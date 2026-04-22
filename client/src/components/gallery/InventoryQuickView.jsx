@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getPhotoUrl } from '../../../../../warehouse-app/client/src/services/inventoryApi.js';
-import { useFavorites } from '../../../../../warehouse-app/client/src/store/FavoritesContext.jsx';
+import { useFavorites } from '../../store/FavoritesContext.js';
 import './InventoryQuickView.css';
 
 export default function InventoryQuickView({ item, onClose }) {

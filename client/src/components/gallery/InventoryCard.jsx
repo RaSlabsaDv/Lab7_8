@@ -1,5 +1,5 @@
 import { getPhotoUrl } from '../../../../../warehouse-app/client/src/services/inventoryApi.js';
-import { useFavorites } from '../../../../../warehouse-app/client/src/store/FavoritesContext.jsx';
+import { useFavorites } from '../../store/FavoritesContext.js';
 import './InventoryCard.css';
 
 export default function InventoryCard({ item, onClick }) {
