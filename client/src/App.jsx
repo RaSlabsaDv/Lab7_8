@@ -7,7 +7,7 @@ import AdminInventoryDetails from './pages/AdminInventoryDetails.jsx';
 import Gallery from './pages/Gallery.jsx';
 import Favorites from './pages/Favorites.jsx';
 import { useFavorites } from './store/FavoritesContext.jsx';
-import './styles/app.css';
+import styles from './styles/App.module.css';
 
 export default function App() {
   const { favorites } = useFavorites();
@@ -15,10 +15,8 @@ export default function App() {
   const location = useLocation();
   const navRef = useRef(null);
 
-  // Close menu on route change
   useEffect(() => { setMenuOpen(false); }, [location]);
 
-  // Close menu on outside click
   useEffect(() => {
     const handler = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
@@ -30,36 +28,45 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app">
-      <nav className="navbar" ref={navRef}>
-        <div className="navbar-brand">
-          <span className="brand-icon">▣</span>
-          <span className="brand-text">WAREHOUSE</span>
+    <div className={styles.app}>
+      <nav className={styles.navbar} ref={navRef}>
+        <div className={styles.navbarBrand}>
+          <span className={styles.brandIcon}>▣</span>
+          <span>WAREHOUSE</span>
         </div>
 
         <button
-          className={`nav-burger ${menuOpen ? 'open' : ''}`}
+          className={`${styles.navBurger}${menuOpen ? ` ${styles.open}` : ''}`}
           onClick={() => setMenuOpen(prev => !prev)}
           aria-label="Toggle menu"
         >
           <span /><span /><span />
         </button>
 
-        <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-          <NavLink to="/gallery" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+        <div className={`${styles.navbarLinks}${menuOpen ? ` ${styles.open}` : ''}`}>
+          <NavLink
+            to="/gallery"
+            className={({ isActive }) => `${styles.navLink}${isActive ? ` ${styles.active}` : ''}`}
+          >
             <span>◫ Gallery</span>
           </NavLink>
-          <NavLink to="/favorites" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) => `${styles.navLink}${isActive ? ` ${styles.active}` : ''}`}
+          >
             <span>♥ Favorites</span>
-            {favorites.length > 0 && <span className="nav-badge">{favorites.length}</span>}
+            {favorites.length > 0 && <span className={styles.navBadge}>{favorites.length}</span>}
           </NavLink>
-          <NavLink to="/admin" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <NavLink
+            to="/admin"
+            className={({ isActive }) => `${styles.navLink}${isActive ? ` ${styles.active}` : ''}`}
+          >
             <span>⚙ Admin</span>
           </NavLink>
         </div>
       </nav>
 
-      <main className="main-content">
+      <main className={styles.mainContent}>
         <Routes>
           <Route path="/" element={<Gallery />} />
           <Route path="/gallery" element={<Gallery />} />

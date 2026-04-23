@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getInventoryItem, getPhotoUrl } from '../services/inventoryApi.js';
-import './AdminInventoryDetails.css';
+import styles from './AdminInventoryDetails.module.css';
 
 export default function AdminInventoryDetails() {
   const { id } = useParams();
@@ -24,25 +24,25 @@ export default function AdminInventoryDetails() {
       <button className="btn btn-ghost" onClick={() => navigate('/admin')} style={{ marginBottom: 24, paddingLeft: 0 }}>
         ← Back to list
       </button>
-      <div className="details-layout">
-        <div className="details-photo-wrap">
+      <div className={styles.detailsLayout}>
+        <div className={styles.detailsPhotoWrap}>
           {item.photo
-            ? <img src={getPhotoUrl(id)} alt={item.inventory_name} className="details-photo" />
-            : <div className="details-no-photo">◫</div>
+            ? <img src={getPhotoUrl(id)} alt={item.inventory_name} className={styles.detailsPhoto} />
+            : <div className={styles.detailsNoPhoto}>◫</div>
           }
         </div>
-        <div className="details-info">
+        <div className={styles.detailsInfo}>
           <span className="tag">ID: {item.id.slice(0, 8)}…</span>
-          <h1 className="details-title">{item.inventory_name}</h1>
-          <p className="details-desc">{item.description || 'No description provided.'}</p>
-          <div className="details-meta">
-            <div className="meta-row">
-              <span className="meta-label">Created</span>
-              <span className="meta-value">{new Date(item.createdAt).toLocaleString()}</span>
+          <h1 className={styles.detailsTitle}>{item.inventory_name}</h1>
+          <p className={styles.detailsDesc}>{item.description || 'No description provided.'}</p>
+          <div className={styles.detailsMeta}>
+            <div className={styles.metaRow}>
+              <span className={styles.metaLabel}>Created</span>
+              <span className={styles.metaValue}>{new Date(item.createdAt).toLocaleString()}</span>
             </div>
-            <div className="meta-row">
-              <span className="meta-label">Updated</span>
-              <span className="meta-value">{new Date(item.updatedAt).toLocaleString()}</span>
+            <div className={styles.metaRow}>
+              <span className={styles.metaLabel}>Updated</span>
+              <span className={styles.metaValue}>{new Date(item.updatedAt).toLocaleString()}</span>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 12, marginTop: 32 }}>

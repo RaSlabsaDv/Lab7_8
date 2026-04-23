@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getInventoryItem, updateInventory, updateInventoryPhoto, getPhotoUrl } from '../services/inventoryApi.js';
-import './AdminInventoryEdit.css';
+import styles from './AdminInventoryEdit.module.css';
 
 export default function AdminInventoryEdit() {
   const { id } = useParams();
@@ -70,17 +70,16 @@ export default function AdminInventoryEdit() {
         </div>
       </div>
 
-      <div className="edit-sections">
-        {/* Section 1: Text */}
-        <section className="edit-card">
-          <h2 className="edit-section-title">
-            <span className="section-num">01</span> Text Data
+      <div className={styles.editSections}>
+        <section className={styles.editCard}>
+          <h2 className={styles.editSectionTitle}>
+            <span className={styles.sectionNum}>01</span> Text Data
           </h2>
           <form onSubmit={handleTextSave} noValidate>
             <div className="form-group">
               <label className="form-label">Inventory Name *</label>
               <input
-                className={`form-input ${nameError ? 'error' : ''}`}
+                className={`form-input${nameError ? ' error' : ''}`}
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
@@ -96,19 +95,18 @@ export default function AdminInventoryEdit() {
           </form>
         </section>
 
-        {/* Section 2: Photo */}
-        <section className="edit-card">
-          <h2 className="edit-section-title">
-            <span className="section-num">02</span> Photo
+        <section className={styles.editCard}>
+          <h2 className={styles.editSectionTitle}>
+            <span className={styles.sectionNum}>02</span> Photo
           </h2>
-          <div className="photo-current">
+          <div className={styles.photoCurrent}>
             <img
               src={photoPreview || (item?.photo ? getPhotoUrl(id) : null)}
               alt="current"
               style={{ display: (photoPreview || item?.photo) ? 'block' : 'none' }}
             />
             {!photoPreview && !item?.photo && (
-              <div className="no-photo-placeholder">◫ No photo</div>
+              <div className={styles.noPhotoPlaceholder}>◫ No photo</div>
             )}
           </div>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 16, flexWrap: 'wrap' }}>

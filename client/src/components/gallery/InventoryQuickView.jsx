@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { getPhotoUrl } from '../../services/inventoryApi.js';
 import { useFavorites } from "../../store/FavoritesContext.jsx";
-import './InventoryQuickView.css';
+import styles from './InventoryQuickView.module.css';
 
 export default function InventoryQuickView({ item, onClose }) {
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -15,19 +15,19 @@ export default function InventoryQuickView({ item, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="qv-box" onClick={e => e.stopPropagation()}>
-        <button className="qv-close" onClick={onClose}>✕</button>
-        <div className="qv-layout">
-          <div className="qv-photo">
+      <div className={styles.qvBox} onClick={e => e.stopPropagation()}>
+        <button className={styles.qvClose} onClick={onClose}>✕</button>
+        <div className={styles.qvLayout}>
+          <div className={styles.qvPhoto}>
             {item.photo
               ? <img src={getPhotoUrl(item.id)} alt={item.inventory_name} />
-              : <div className="qv-no-photo">◫</div>
+              : <div className={styles.qvNoPhoto}>◫</div>
             }
           </div>
-          <div className="qv-info">
+          <div className={styles.qvInfo}>
             <span className="tag">Quick View</span>
-            <h2 className="qv-title">{item.inventory_name}</h2>
-            <p className="qv-desc">{item.description || 'No description available.'}</p>
+            <h2 className={styles.qvTitle}>{item.inventory_name}</h2>
+            <p className={styles.qvDesc}>{item.description || 'No description available.'}</p>
             <button
               className={`btn ${fav ? 'btn-danger' : 'btn-primary'}`}
               style={{ marginTop: 'auto' }}

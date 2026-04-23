@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './InventoryForm.css';
+import styles from './InventoryForm.module.css';
 
 export default function InventoryForm({ initial = {}, onSubmit, loading, submitLabel = 'Save' }) {
   const [name, setName] = useState(initial.inventory_name || '');
@@ -34,11 +34,11 @@ export default function InventoryForm({ initial = {}, onSubmit, loading, submitL
   };
 
   return (
-    <form className="inv-form" onSubmit={handleSubmit} noValidate>
+    <form className={styles.invForm} onSubmit={handleSubmit} noValidate>
       <div className="form-group">
         <label className="form-label">Inventory Name *</label>
         <input
-          className={`form-input ${errors.name ? 'error' : ''}`}
+          className={`form-input${errors.name ? ' error' : ''}`}
           value={name}
           onChange={e => setName(e.target.value)}
           placeholder="Enter item name"
@@ -58,10 +58,13 @@ export default function InventoryForm({ initial = {}, onSubmit, loading, submitL
 
       <div className="form-group">
         <label className="form-label">Photo</label>
-        <div className="photo-upload-area" onClick={() => document.getElementById('photo-input').click()}>
+        <div
+          className={styles.photoUploadArea}
+          onClick={() => document.getElementById('photo-input').click()}
+        >
           {preview
-            ? <img src={preview} alt="preview" className="photo-preview" />
-            : <div className="photo-placeholder">
+            ? <img src={preview} alt="preview" className={styles.photoPreview} />
+            : <div className={styles.photoPlaceholder}>
                 <span style={{ fontSize: 32 }}>◫</span>
                 <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Click to upload image</span>
               </div>
@@ -70,7 +73,7 @@ export default function InventoryForm({ initial = {}, onSubmit, loading, submitL
         <input id="photo-input" type="file" accept="image/*" onChange={handlePhoto} style={{ display: 'none' }} />
       </div>
 
-      <div className="form-actions">
+      <div className={styles.formActions}>
         <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Saving…' : submitLabel}
         </button>

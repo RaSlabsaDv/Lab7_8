@@ -1,6 +1,6 @@
 import { getPhotoUrl } from '../../services/inventoryApi.js';
 import { useFavorites } from "../../store/FavoritesContext.jsx";
-import './InventoryCard.css';
+import styles from './InventoryCard.module.css';
 
 export default function InventoryCard({ item, onClick }) {
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -12,23 +12,23 @@ export default function InventoryCard({ item, onClick }) {
   };
 
   return (
-    <div className="inv-card" onClick={() => onClick(item)}>
-      <div className="card-photo">
+    <div className={styles.invCard} onClick={() => onClick(item)}>
+      <div className={styles.cardPhoto}>
         {item.photo
           ? <img src={getPhotoUrl(item.id)} alt={item.inventory_name} loading="lazy" />
-          : <div className="card-no-photo">◫</div>
+          : <div className={styles.cardNoPhoto}>◫</div>
         }
         <button
-          className={`fav-btn ${fav ? 'active' : ''}`}
+          className={`${styles.favBtn}${fav ? ` ${styles.active}` : ''}`}
           onClick={handleFav}
           title={fav ? 'Remove from favorites' : 'Add to favorites'}
         >
           ♥
         </button>
       </div>
-      <div className="card-body">
-        <span className="card-name">{item.inventory_name}</span>
-        {item.description && <span className="card-desc">{item.description}</span>}
+      <div className={styles.cardBody}>
+        <span className={styles.cardName}>{item.inventory_name}</span>
+        {item.description && <span className={styles.cardDesc}>{item.description}</span>}
       </div>
     </div>
   );

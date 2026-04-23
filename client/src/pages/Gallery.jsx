@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getInventory } from '../services/inventoryApi.js';
 import InventoryCard from '../components/gallery/InventoryCard.jsx';
 import InventoryQuickView from '../components/gallery/InventoryQuickView.jsx';
-import './Gallery.css';
+import styles from './Gallery.module.css';
 
 export default function Gallery() {
   const [items, setItems] = useState([]);
@@ -27,9 +27,9 @@ export default function Gallery() {
       </div>
 
       {loading && (
-        <div className="gallery-grid">
+        <div className={styles.galleryGrid}>
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="card-skeleton">
+            <div key={i} className={styles.cardSkeleton}>
               <div className="skeleton" style={{ aspectRatio: '1', borderRadius: '12px 12px 0 0' }} />
               <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div className="skeleton" style={{ height: 16, width: '70%' }} />
@@ -57,7 +57,7 @@ export default function Gallery() {
       )}
 
       {!loading && !error && items.length > 0 && (
-        <div className="gallery-grid">
+        <div className={styles.galleryGrid}>
           {items.map(item => (
             <InventoryCard key={item.id} item={item} onClick={setSelected} />
           ))}

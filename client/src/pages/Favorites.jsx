@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useFavorites } from '../store/FavoritesContext.jsx';
 import { getPhotoUrl } from '../services/inventoryApi.js';
 import InventoryQuickView from '../components/gallery/InventoryQuickView.jsx';
-import './Favorites.css';
+import styles from './Favorites.module.css';
 
 export default function Favorites() {
   const { favorites, removeFavorite } = useFavorites();
@@ -24,21 +24,21 @@ export default function Favorites() {
       )}
 
       {favorites.length > 0 && (
-        <div className="fav-grid">
+        <div className={styles.favGrid}>
           {favorites.map(item => (
-            <div key={item.id} className="fav-card" onClick={() => setSelected(item)}>
-              <div className="fav-photo">
+            <div key={item.id} className={styles.favCard} onClick={() => setSelected(item)}>
+              <div className={styles.favPhoto}>
                 {item.photo
                   ? <img src={getPhotoUrl(item.id)} alt={item.inventory_name} loading="lazy" />
-                  : <div className="fav-no-photo">◫</div>
+                  : <div className={styles.favNoPhoto}>◫</div>
                 }
               </div>
-              <div className="fav-info">
-                <span className="fav-name">{item.inventory_name}</span>
-                {item.description && <span className="fav-desc">{item.description}</span>}
+              <div className={styles.favInfo}>
+                <span className={styles.favName}>{item.inventory_name}</span>
+                {item.description && <span className={styles.favDesc}>{item.description}</span>}
               </div>
               <button
-                className="fav-remove"
+                className={styles.favRemove}
                 onClick={e => { e.stopPropagation(); removeFavorite(item.id); }}
                 title="Remove from favorites"
               >

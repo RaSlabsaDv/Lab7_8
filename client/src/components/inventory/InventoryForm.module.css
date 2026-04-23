@@ -1,0 +1,38 @@
+.invForm {
+  max-width: 600px;
+}
+
+.photoUploadArea {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition);
+  overflow: hidden;
+}
+
+.photoUploadArea:hover {
+  border-color: var(--accent);
+}
+
+.photoPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.photoPreview {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.formActions {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+}

@@ -1,0 +1,84 @@
+.navbar {
+  border-bottom: 1px solid var(--border);
+  background: rgba(14, 14, 14, 0.95);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbarInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbarLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.logoText {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text);
+}
+
+.logoTag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+.navbarLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navLink {
+  padding: 6px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--text);
+  background: var(--bg-elevated);
+}
+
+.navLink.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.navLinkFav { color: var(--text-dim); }
+.navLinkFav.active { color: var(--accent); }
+
+@media (max-width: 480px) {
+  .navbarInner { padding: 0 16px; }
+  .navLink { padding: 6px 10px; font-size: 12px; }
+  .logoText { display: none; }
+}
